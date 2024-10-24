@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古诗作品模块</title>
+    <style>
+        body {
+            font-family: 'SimSun', 'Songti SC', serif;
+            background-color: #f0e6d2;
+            color: #4b3c28;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .shi {
+            margin: 20px 0;
+            border-bottom: 1px dashed #d8b579;
+            padding-bottom: 10px;
+        }
+
+        .edit-button, .confirm-button, .cancel-button, .add-button, .delete-button, .view-button {
+            margin: 10px 5px;
+            padding: 10px 15px;
+            border: 1px solid #8B0000;
+            background-color: #fff;
+            color: #8B0000;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+            .edit-button:hover, .confirm-button:hover, .cancel-button:hover, .add-button:hover, .delete-button:hover, .view-button:hover {
+                background-color: #8B0000;
+                color: #fff;
+            }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            border: 1px solid #8B0000;
+            background-color: #fff;
+            color: #8B0000;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .back-button:hover {
+                background-color: #8B0000;
+                color: #fff;
+            }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>古诗作品</h1>
+    </header>
+
+    <div class="container" id="container">
+        <!-- 作品内容将由 JavaScript 动态生成 -->
+    </div>
+
+    <button class="add-button" onclick="promptAddShi()">添加作品</button>
+    <button class="edit-button" onclick="window.location.href='index.html'">返回主界面</button>
+
+    <footer>
+        <p>&copy; 2024 我的文学作品集 | 版权声明</p>
+    </footer>
+
+    <script>
+        const correctPassword = 'Cyn15119522808'; // 修改为实际密码
+
+        // 初始化时加载保存的作品
+        function loadShis() {
+            const savedShis = JSON.parse(localStorage.getItem('shis')) || [];
+            savedShis.forEach((shi, index) => {
+                addShi(shi.title, shi.content, index + 1);
+            });
+        }
+
+        function enableEditing(shiId) {
+            const shi = document.getElementById(shiId);
+            const title = shi.querySelector('h2');
+            const content = shi.querySelector('p');
+            const editButton = shi.querySelector('.edit-button');
+            const confirmButton = shi.querySelector('.confirm-button');
+            const cancelButton = shi.querySelector('.cancel-button');
+
+            const password = prompt('请输入密码以编辑作品：');
+            if (password === correctPassword) {
+                // 保存原始内容
+                shi.dataset.originalTitle = title.innerText;
+                shi.dataset.originalContent = content.innerText;
+
+                title.contentEditable = true; // 允许编辑标题
+                content.contentEditable = true; // 允许编辑内容
+                title.style.backgroundColor = '#fff5d4'; // 编辑时背景颜色
+                content.style.backgroundColor = '#fff5d4'; // 编辑时背景颜色
+
+                editButton.style.display = 'none'; // 隐藏编辑按钮
+                confirmButton.style.display = 'inline'; // 显示确认按钮
+                cancelButton.style.display = 'inline'; // 显示取消按钮
+            } else {
+                alert('密码错误，无法编辑！');
+            }
+        }
+
+        function confirmEditing(shiId) {
+            const shi = document.getElementById(shiId);
+            const title = shi.querySelector('h2');
+            const content = shi.querySelector('p');
+
+            // 结束编辑状态
+            title.contentEditable = false;
+            content.contentEditable = false;
+            title.style.backgroundColor = ''; // 清除背景颜色
+            content.style.backgroundColor = ''; // 清除背景颜色
+
+            // 隐藏确认和取消按钮
+            shi.querySelector('.confirm-button').style.display = 'none';
+            shi.querySelector('.cancel-button').style.display = 'none';
+
+            // 显示编辑按钮
+            shi.querySelector('.edit-button').style.display = 'inline';
+
+            // 保存编辑后的内容到 localStorage
+            saveShis();
+        }
+
+        function cancelEditing(shiId) {
+            const shi = document.getElementById(shiId);
+            const title = shi.querySelector('h2');
+            const content = shi.querySelector('p');
+
+            // 恢复原始内容
+            title.innerText = shi.dataset.originalTitle;
+            content.innerText = shi.dataset.originalContent;
+
+            // 结束编辑状态
+            title.contentEditable = false;
+            content.contentEditable = false;
+            title.style.backgroundColor = ''; // 清除背景颜色
+            content.style.backgroundColor = ''; // 清除背景颜色
+
+            // 隐藏确认和取消按钮
+            shi.querySelector('.confirm-button').style.display = 'none';
+            shi.querySelector('.cancel-button').style.display = 'none';
+
+            // 显示编辑按钮
+            shi.querySelector('.edit-button').style.display = 'inline';
+        }
+
+        function promptAddShi() {
+            const password = prompt('请输入密码以添加作品：');
+            if (password === correctPassword) {
+                addShi(); // 输入正确密码后添加作品
+            } else {
+                alert('密码错误，无法添加作品！');
+            }
+        }
+
+        function addShi(title = '新作品标题', content = '这是新添加的作品内容。', index) {
+            const container = document.getElementById('container');
+            const newShi = document.createElement('div');
+            newShi.className = 'shi';
+            newShi.id = 'shi' + (index || (document.querySelectorAll('.shi').length + 1));
+            newShi.innerHTML = `
+        <h2 contenteditable="false">${title}</h2>
+        <p contenteditable="false">${content}</p >
+        <button class="view-button" onclick="window.location.href='
+        //detail.html//
+        ?title=${encodeURIComponent(title)}&content=${encodeURIComponent(content)}'">查看详情</button>
+        <button class="edit-button" onclick="enableEditing('${newShi.id}')">编辑作品</button>
+        <button class="confirm-button" onclick="confirmEditing('${newShi.id}')" style="display: none;">确认</button>
+        <button class="cancel-button" onclick="cancelEditing('${newShi.id}')" style="display: none;">取消</button>
+        <button class="delete-button" onclick="deleteShi('${newShi.id}')">删除作品</button>
+    `;
+            container.appendChild(newShi);
+            saveShis();
+        }
+
+        function deleteShi(shiId) {
+            const password = prompt('请输入密码以删除作品：');
+            if (password === correctPassword) {
+                document.getElementById(shiId).remove();
+                saveShis(); // 更新保存
+            } else {
+                alert('密码错误，无法删除作品！');
+            }
+        }
+
+        function createDetailPage(title, content, index) {
+            const detailPage = `
+                    <!DOCTYPE html>
+                    <html lang="zh">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>${title}</title>
+                        <style>
+                            body {
+                                font-family: 'SimSun', 'Songti SC', serif;
+                                background-color: #f0e6d2;
+                                color: #4b3c28;
+                                margin: 0;
+                                padding: 20px;
+                            }
+                            .container {
+                                max-width: 800px;
+                                margin: auto;
+                                background: rgba(255, 255, 255, 0.9);
+                                padding: 20px;
+                                border-radius: 12px;
+                                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+                            }
+                            .back-button {
+                                margin: 20px 0;
+                                padding: 10
+                        .back-button {
+                            margin: 20px 0;
+                            padding: 10px 15px;
+                            border: 1px solid #8B0000;
+                            background-color: #fff;
+                            color: #8B0000;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            transition: background-color 0.3s;
+                        }
+                        .back-button:hover {
+                            background-color: #8B0000;
+                            color: #fff;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <h1>${title}</h1>
+                        <p>${content}</p >
+                        <button class="back-button" onclick="window.location.href='gushi.html'">返回古诗模块</button>
+                    </div>
+                </body>
+                </html>
+            `;
+            const blob = new Blob([detailPage], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            window.open(url, '_blank'); // 在新窗口中打开详情页
+        }
+
+        function saveShis() {
+            const shis = [];
+            const allShis = document.querySelectorAll('.shi');
+            allShis.forEach(shi => {
+                shis.push({
+                    title: shi.querySelector('h2').innerText,
+                    content: shi.querySelector('p').innerText
+                });
+            });
+            localStorage.setItem('shis', JSON.stringify(shis)); // 将作品保存到 localStorage
+        }
+
+        // 初始化加载作品
+        loadShis();
+    </script>
+
+</body>
+</html>

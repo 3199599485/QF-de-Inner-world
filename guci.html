@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古词作品模块</title>
+    <style>
+        body {
+            font-family: 'SimSun', 'Songti SC', serif;
+            background-color: #f0e6d2;
+            color: #4b3c28;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .ci {
+            margin: 20px 0;
+            border-bottom: 1px dashed #d8b579;
+            padding-bottom: 10px;
+        }
+
+        .edit-button, .confirm-button, .cancel-button, .add-button, .delete-button, .view-button {
+            margin: 10px 5px;
+            padding: 10px 15px;
+            border: 1px solid #8B0000;
+            background-color: #fff;
+            color: #8B0000;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+            .edit-button:hover, .confirm-button:hover, .cancel-button:hover, .add-button:hover, .delete-button:hover, .view-button:hover {
+                background-color: #8B0000;
+                color: #fff;
+            }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>古词作品</h1>
+    </header>
+
+    <div class="container" id="container">
+        <!-- 作品内容将由 JavaScript 动态生成 -->
+    </div>
+
+    <button class="add-button" onclick="promptAddCi()">添加作品</button>
+    <button class="edit-button" onclick="window.location.href='index.html'">返回主界面</button>
+
+    <footer>
+        <p>&copy; 2024 我的文学作品集 | 版权声明</p>
+    </footer>
+
+    <script>
+        const correctPassword = 'Cyn15119522808'; // 修改为实际密码
+
+        // 初始化时加载保存的作品
+        function loadCis() {
+            const savedCis = JSON.parse(localStorage.getItem('cis')) || [];
+            savedCis.forEach((ci, index) => {
+                addCi(ci.title, ci.content, index + 1);
+            });
+        }
+
+        function enableEditing(ciId) {
+            const ci = document.getElementById(ciId);
+            const title = ci.querySelector('h2');
+            const content = ci.querySelector('p');
+            const editButton = ci.querySelector('.edit-button');
+            const confirmButton = ci.querySelector('.confirm-button');
+            const cancelButton = ci.querySelector('.cancel-button');
+
+            const password = prompt('请输入密码以编辑作品：');
+            if (password === correctPassword) {
+                // 保存原始内容
+                ci.dataset.originalTitle = title.innerText;
+                ci.dataset.originalContent = content.innerText;
+
+                title.contentEditable = true; // 允许编辑标题
+                content.contentEditable = true; // 允许编辑内容
+                title.style.backgroundColor = '#fff5d4'; // 编辑时背景颜色
+                content.style.backgroundColor = '#fff5d4'; // 编辑时背景颜色
+
+                editButton.style.display = 'none'; // 隐藏编辑按钮
+                confirmButton.style.display = 'inline'; // 显示确认按钮
+                cancelButton.style.display = 'inline'; // 显示取消按钮
+            } else {
+                alert('密码错误，无法编辑！');
+            }
+        }
+
+        function confirmEditing(ciId) {
+            const ci = document.getElementById(ciId);
+            const title = ci.querySelector('h2');
+            const content = ci.querySelector('p');
+
+            // 结束编辑状态
+            title.contentEditable = false;
+            content.contentEditable = false;
+            title.style.backgroundColor = ''; // 清除背景颜色
+            content.style.backgroundColor = ''; // 清除背景颜色
+
+            // 隐藏确认和取消按钮
+            ci.querySelector('.confirm-button').style.display = 'none';
+            ci.querySelector('.cancel-button').style.display = 'none';
+
+            // 显示编辑按钮
+            ci.querySelector('.edit-button').style.display = 'inline';
+
+            // 保存编辑后的内容到 localStorage
+            saveCis();
+        }
+
+        function cancelEditing(ciId) {
+            const ci = document.getElementById(ciId);
+            const title = ci.querySelector('h2');
+            const content = ci.querySelector('p');
+
+            // 恢复原始内容
+            title.innerText = ci.dataset.originalTitle;
+            content.innerText = ci.dataset.originalContent;
+
+            // 结束编辑状态
+            title.contentEditable = false;
+            content.contentEditable = false;
+            title.style.backgroundColor = ''; // 清除背景颜色
+            content.style.backgroundColor = ''; // 清除背景颜色
+
+            // 隐藏确认和取消按钮
+            ci.querySelector('.confirm-button').style.display = 'none';
+            ci.querySelector('.cancel-button').style.display = 'none';
+
+            // 显示编辑按钮
+            ci.querySelector('.edit-button').style.display = 'inline';
+        }
+
+        function promptAddCi() {
+            const password = prompt('请输入密码以添加作品：');
+            if (password === correctPassword) {
+                addCi(); // 输入正确密码后添加作品
+            } else {
+                alert('密码错误，无法添加作品！');
+            }
+        }
+
+        function addCi(title = '新作品标题', content = '这是新添加的作品内容。', index) {
+            const container = document.getElementById('container');
+            const newCi = document.createElement('div');
+            newCi.className = 'ci';
+            newCi.id = 'ci' + (index || (document.querySelectorAll('.ci').length + 1)); // 根据数量生成唯一ID
+            newCi.innerHTML = `
+                    <h2 contenteditable="false">${title}</h2>
+                    <p contenteditable="false">${content}</p >
+                    <button class="view-button" onclick="viewDetail('${encodeURIComponent(title)}', '${encodeURIComponent(content)}')">查看详情</button>
+                    <button class="edit-button" onclick="enableEditing('${newCi.id}')">编辑作品</button>
+                    <button class="confirm-button" onclick="confirmEditing('${newCi.id}')" style="display: none;">确认</button>
+                    <button class="cancel-button" onclick="cancelEditing('${newCi.id}')" style="display: none;">取消</button>
+                    <button class="delete-button" onclick="deleteCi('${newCi.id}')">删除作品</button>
+            `;
+            container.appendChild(newCi);
+            saveCis(); // 保存到 localStorage
+        }
+
+        function deleteCi(ciId) {
+            const password = prompt('请输入密码以删除作品：');
+            if (password === correctPassword) {
+                const ci = document.getElementById(ciId);
+                ci.remove(); // 删除作品
+                saveCis(); // 更新 localStorage
+            } else {
+                alert('密码错误，无法删除作品！');
+            }
+        }
+
+        function viewDetail(title, content) {
+            window.open(`
+            //detail-guci.html//
+            ?title=${title}&content=${content}`, '_blank'); // 打开详情页
+        }
+
+        function saveCis() {
+            const cis = [];
+            document.querySelectorAll('.ci').forEach(ci => {
+                cis.push({
+                    title: ci.querySelector('h2').innerText,
+                    content: ci.querySelector('p').innerText
+                });
+            });
+            localStorage.setItem('cis', JSON.stringify(cis)); // 保存作品到 localStorage
+        }
+
+        // 页面加载时初始化
+        window.onload = loadCis;
+    </script>
+
+</body>
+</html>
