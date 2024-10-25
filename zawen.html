@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杂文作品模块</title>
+    <style>
+        body {
+            font-family: 'SimSun', 'Songti SC', serif;
+            background-color: #f0e6d2;
+            color: #4b3c28;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .essay {
+            margin: 20px 0;
+            border-bottom: 1px dashed #d8b579;
+            padding-bottom: 10px;
+            display: flex;
+        }
+
+        .number {
+            margin-right: 15px;
+            font-size: 1.2em;
+            color: #8B0000;
+        }
+
+        .thought-box {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #8B0000;
+            border-radius: 5px;
+            background-color: #eae0b2; /* 暗黄色背景 */
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            border: 1px solid #8B0000;
+            background-color: #fff;
+            color: #8B0000;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .back-button:hover {
+                background-color: #8B0000;
+                color: #fff;
+            }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>杂文作品</h1>
+        <div class="essay">
+            <div class="number">1.</div>
+            <div>
+                <h2>待上传</h2>
+                <p>待上传</p>
+                <div class="thought-box">
+                    <h3>杂记</h3>
+                    <p>暂无</p>
+                </div>
+            </div>
+        </div>
+        <button class="back-button" onclick="window.location.href='index.html'">返回主界面</button>
+    </div>
+</body>
+</html>

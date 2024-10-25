@@ -30,21 +30,35 @@
             margin: 20px 0;
             border-bottom: 1px dashed #d8b579;
             padding-bottom: 10px;
+            display: flex;
         }
 
-        .edit-button, .confirm-button, .cancel-button, .add-button, .delete-button, .view-button {
-            margin: 10px 5px;
+        .number {
+            margin-right: 15px;
+            font-size: 1.2em;
+            color: #8B0000;
+        }
+
+        .thought-box {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #8B0000;
+            border-radius: 5px;
+            background-color: #eae0b2; /* 暗黄色背景 */
+        }
+
+        .back-button {
+            margin-top: 20px;
             padding: 10px 15px;
             border: 1px solid #8B0000;
             background-color: #fff;
             color: #8B0000;
             border-radius: 5px;
             cursor: pointer;
-            display: inline-block;
             transition: background-color 0.3s;
         }
 
-            .edit-button:hover, .confirm-button:hover, .cancel-button:hover, .add-button:hover, .delete-button:hover, .view-button:hover {
+            .back-button:hover {
                 background-color: #8B0000;
                 color: #fff;
             }
@@ -58,163 +72,157 @@
     </style>
 </head>
 <body>
-
-    <header>
-        <h1>古词作品</h1>
-    </header>
-
-    <div class="container" id="container">
-        <!-- 作品内容将由 JavaScript 动态生成 -->
+    <div class="container">
+        <h1>古词<br>字句浅显的拼凑</h1>
+        <div class="ci">
+            <div class="number">一、</div>
+            <div>
+                <h2>摸鱼儿•暮春时节遇故人</h2>
+                <p>
+                    正恍惚，又晤君幼。暮春何处射柳？<br>
+                    恰五月风光绮秀，无意折花自游。<br>
+                    何所求？尽舍去，越明暗里访深幽。<br>
+                    心纵形囚。览古今物事，千千世界，何故徒生忧？<br>
+                    不觉间，黄粱残梦已休。江水几曾西流？<br>
+                    三载一日何意久，灵台方寸悲秋。<br>
+                    不必留。且将走，浅睡蝶反岂须愁？<br>
+                    结衣束发。寄蜉蝣天地，区区小人，哪堪惹人羞。<br><br>
+                    壬寅年春·湛江
+                </p>
+                <div class="thought-box">
+                    <h3>杂记</h3>
+                    <p>1.2022年记录，2023年完成，2024年格律修改正确。</p>
+                </div>
+            </div>
+        </div>
+        <div class="ci">
+            <div class="number">二、</div>
+            <div>
+                <h2>钗头凤•落花</h2>
+                <p>
+                    和风化，金雨落，芳华岂为流水祸？<br>
+                    春华开，秋实败，如此三载，君未归来。<br>
+                    坏！坏！坏！<br>
+                    千字文，万言书，终画土。<br>
+                    登高台，望北海，形距秦淮，心未曾殆。<br>
+                    怪！怪！怪！<br><br>
+                    壬寅年秋·深圳
+                </p>
+                <div class="thought-box">
+                    <h3>杂记</h3>
+                    <p>暂无</p>
+                </div>
+            </div>
+        </div>
+        <div class="ci">
+            <div class="number">三、</div>
+            <div>
+                <h2>相见欢•力争鳌头</h2>
+                <p>
+                    折戟已有日久，事俱休。<br>
+                    且看昨日失意今抖擞。<br>
+                    昆山玉，桂林枝，龙虎斗。<br>
+                    明朝独登考场占鳌头！<br><br>
+                    癸卯年夏·深圳
+                </p>
+                <div class="thought-box">
+                    <h3>杂记</h3>
+                    <p>1.目的是为复读好朋友高考打气。</p>
+                </div>
+            </div>
+        </div>
+        <div class="ci">
+            <div class="number">四、</div>
+            <div>
+                <h2>相见欢•自反</h2>
+                <p>
+                    新败难承旧顾，意踟蹰。<br>
+                    竹发千尺放眼皆险阻。<br>
+                    秉性伏，耻羞辱，续前路。<br>
+                    鹏程万里归来尽坦途。<br><br>
+                    癸卯年夏·深圳
+                </p>
+                <div class="thought-box">
+                    <h3>杂记</h3>
+                    <p>1.记录于转专业考试面试卡我0.7分未通过。</p>
+                </div>
+            </div>
+        </div>
+        <div class="ci">
+            <div class="number">五、</div>
+            <div>
+                <h2>破阵子•西行大理</h2>
+                <p>
+                    纵身长歌万里，信马自在游西。<br>
+                    朝起丹冥暮少阴，白骥东风正相宜。<br>
+                    乘兴人得意。<br>
+                    轻颓不更节气，奋起难追前夕。<br>
+                    忙借春光百事兴，莫待来日秋风起。<br>
+                    万事皆可期。<br><br>
+                    癸卯年夏·百色
+                </p>
+                <div class="thought-box">
+                    <h3>杂记</h3>
+                    <p>1.做计划时构思，完成于启程路上。</p>
+                </div>
+            </div>
+        </div>
+        <div class="ci">
+            <div class="number">六、</div>
+            <div>
+                <h2>破阵子•秋思（其一）</h2>
+                <p>
+                    遥寄岭南何患，委身江北常忧。<br>
+                    南冠未正身畔楚，桂落菊残寒意秋。<br>
+                    枫霜染散愁。<br>
+                    素葛疏烟渐远，苍丝暮雨难收。<br>
+                    年华一分春色尽，啼鸟声声更上楼。<br>
+                    梦深故里游。<br><br>
+                    甲辰年秋·深圳
+                </p>
+                <div class="thought-box">
+                    <h3>杂记</h3>
+                    <p>1.尝试将对写法运用于词中，应该是寄情于羁旅在外的人物。</p>
+                </div>
+            </div>
+        </div>
+        <div class="ci">
+            <div class="number">七、</div>
+            <div>
+                <h2>破阵子•秋思（其二）</h2>
+                <p>
+                    戍子征夫离久，万千战鼓寒秋。<br>
+                    只甲风尘挥剑舞，沙场霜星泪难收。<br>
+                    登高独倚楼。<br>
+                    青火暗寻孤寂，故园音信全休。<br>
+                    几度梦中归故里，乡月清辉总相留。<br>
+                    孤鸿影长囚。<br><br>
+                    甲辰年秋·岳阳
+                </p>
+                <div class="thought-box">
+                    <h3>杂记</h3>
+                    <p>1.发现自己词句以不可避免的趋势越来越软弱，因此寄情于戍边征战的将士，仍然无法产生类似心境。</p>
+                </div>
+            </div>
+        </div>
+        <div class="ci">
+            <div class="number">八、</div>
+            <div>
+                <h2>一剪梅•晚秋</h2>
+                <p>
+                    南岭春秋向难猜，和熏未竟，珪月且来。<br>
+                    三巡秋败老菊衰。朽蠹从霜，流水低徊。<br>
+                    青鸟几时赴玉台？风卷长亭，寄念蓬莱。<br>
+                    归期未省空留待。岂欲追思？两鬓斑白。<br><br>
+                    甲辰年秋·深圳
+                </p>
+                <div class="thought-box">
+                    <h3>杂记</h3>
+                    <p>1.记录2024年第二次入秋</p>
+                </div>
+            </div>
+        </div>
+        <button class="back-button" onclick="window.location.href='index.html'">返回主界面</button>
     </div>
-
-    <button class="add-button" onclick="promptAddCi()">添加作品</button>
-    <button class="edit-button" onclick="window.location.href='index.html'">返回主界面</button>
-
-    <footer>
-        <p>&copy; 2024 我的文学作品集 | 版权声明</p>
-    </footer>
-
-    <script>
-        const correctPassword = 'Cyn15119522808'; // 修改为实际密码
-
-        // 初始化时加载保存的作品
-        function loadCis() {
-            const savedCis = JSON.parse(localStorage.getItem('cis')) || [];
-            savedCis.forEach((ci, index) => {
-                addCi(ci.title, ci.content, index + 1);
-            });
-        }
-
-        function enableEditing(ciId) {
-            const ci = document.getElementById(ciId);
-            const title = ci.querySelector('h2');
-            const content = ci.querySelector('p');
-            const editButton = ci.querySelector('.edit-button');
-            const confirmButton = ci.querySelector('.confirm-button');
-            const cancelButton = ci.querySelector('.cancel-button');
-
-            const password = prompt('请输入密码以编辑作品：');
-            if (password === correctPassword) {
-                // 保存原始内容
-                ci.dataset.originalTitle = title.innerText;
-                ci.dataset.originalContent = content.innerText;
-
-                title.contentEditable = true; // 允许编辑标题
-                content.contentEditable = true; // 允许编辑内容
-                title.style.backgroundColor = '#fff5d4'; // 编辑时背景颜色
-                content.style.backgroundColor = '#fff5d4'; // 编辑时背景颜色
-
-                editButton.style.display = 'none'; // 隐藏编辑按钮
-                confirmButton.style.display = 'inline'; // 显示确认按钮
-                cancelButton.style.display = 'inline'; // 显示取消按钮
-            } else {
-                alert('密码错误，无法编辑！');
-            }
-        }
-
-        function confirmEditing(ciId) {
-            const ci = document.getElementById(ciId);
-            const title = ci.querySelector('h2');
-            const content = ci.querySelector('p');
-
-            // 结束编辑状态
-            title.contentEditable = false;
-            content.contentEditable = false;
-            title.style.backgroundColor = ''; // 清除背景颜色
-            content.style.backgroundColor = ''; // 清除背景颜色
-
-            // 隐藏确认和取消按钮
-            ci.querySelector('.confirm-button').style.display = 'none';
-            ci.querySelector('.cancel-button').style.display = 'none';
-
-            // 显示编辑按钮
-            ci.querySelector('.edit-button').style.display = 'inline';
-
-            // 保存编辑后的内容到 localStorage
-            saveCis();
-        }
-
-        function cancelEditing(ciId) {
-            const ci = document.getElementById(ciId);
-            const title = ci.querySelector('h2');
-            const content = ci.querySelector('p');
-
-            // 恢复原始内容
-            title.innerText = ci.dataset.originalTitle;
-            content.innerText = ci.dataset.originalContent;
-
-            // 结束编辑状态
-            title.contentEditable = false;
-            content.contentEditable = false;
-            title.style.backgroundColor = ''; // 清除背景颜色
-            content.style.backgroundColor = ''; // 清除背景颜色
-
-            // 隐藏确认和取消按钮
-            ci.querySelector('.confirm-button').style.display = 'none';
-            ci.querySelector('.cancel-button').style.display = 'none';
-
-            // 显示编辑按钮
-            ci.querySelector('.edit-button').style.display = 'inline';
-        }
-
-        function promptAddCi() {
-            const password = prompt('请输入密码以添加作品：');
-            if (password === correctPassword) {
-                addCi(); // 输入正确密码后添加作品
-            } else {
-                alert('密码错误，无法添加作品！');
-            }
-        }
-
-        function addCi(title = '新作品标题', content = '这是新添加的作品内容。', index) {
-            const container = document.getElementById('container');
-            const newCi = document.createElement('div');
-            newCi.className = 'ci';
-            newCi.id = 'ci' + (index || (document.querySelectorAll('.ci').length + 1)); // 根据数量生成唯一ID
-            newCi.innerHTML = `
-                    <h2 contenteditable="false">${title}</h2>
-                    <p contenteditable="false">${content}</p >
-                    <button class="view-button" onclick="viewDetail('${encodeURIComponent(title)}', '${encodeURIComponent(content)}')">查看详情</button>
-                    <button class="edit-button" onclick="enableEditing('${newCi.id}')">编辑作品</button>
-                    <button class="confirm-button" onclick="confirmEditing('${newCi.id}')" style="display: none;">确认</button>
-                    <button class="cancel-button" onclick="cancelEditing('${newCi.id}')" style="display: none;">取消</button>
-                    <button class="delete-button" onclick="deleteCi('${newCi.id}')">删除作品</button>
-            `;
-            container.appendChild(newCi);
-            saveCis(); // 保存到 localStorage
-        }
-
-        function deleteCi(ciId) {
-            const password = prompt('请输入密码以删除作品：');
-            if (password === correctPassword) {
-                const ci = document.getElementById(ciId);
-                ci.remove(); // 删除作品
-                saveCis(); // 更新 localStorage
-            } else {
-                alert('密码错误，无法删除作品！');
-            }
-        }
-
-        function viewDetail(title, content) {
-            window.open(`
-            //detail-guci.html//
-            ?title=${title}&content=${content}`, '_blank'); // 打开详情页
-        }
-
-        function saveCis() {
-            const cis = [];
-            document.querySelectorAll('.ci').forEach(ci => {
-                cis.push({
-                    title: ci.querySelector('h2').innerText,
-                    content: ci.querySelector('p').innerText
-                });
-            });
-            localStorage.setItem('cis', JSON.stringify(cis)); // 保存作品到 localStorage
-        }
-
-        // 页面加载时初始化
-        window.onload = loadCis;
-    </script>
-
 </body>
 </html>
